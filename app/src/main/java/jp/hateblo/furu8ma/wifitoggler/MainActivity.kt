@@ -3,6 +3,7 @@ package jp.hateblo.furu8ma.wifitoggler
 import android.app.Activity
 import android.net.wifi.WifiManager
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.Toast
 
 class MainActivity : Activity() {
@@ -15,12 +16,16 @@ class MainActivity : Activity() {
 
     fun toggleWifi() {
         val wifiManager: WifiManager = getSystemService(WIFI_SERVICE) as WifiManager;
+        var message = "UNKNOWN";
         if (wifiManager.isWifiEnabled) {
-            Toast.makeText(this, "WIFI OFF", Toast.LENGTH_SHORT).show()
             wifiManager.isWifiEnabled = false;
+            message = "WIFI OFF"
         } else {
-            Toast.makeText(this, "WIFI ON", Toast.LENGTH_SHORT).show()
+            message = "WIFI ON"
             wifiManager.isWifiEnabled = true;
         }
+        val toast = Toast.makeText(this, "\n\n　　　" + message + "　　　\n\n", Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.CENTER, 0, 0)
+        toast.show()
     }
 }
